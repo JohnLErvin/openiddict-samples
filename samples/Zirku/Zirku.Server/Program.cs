@@ -99,12 +99,16 @@ builder.Services.AddOpenIddict()
         options.UseAspNetCore();
     });
 
-builder.Services.AddCors();
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
+    policy.AllowAnyHeader()
+          .AllowAnyMethod()
+          .WithOrigins("http://localhost:5112")));
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:5112"));
+app.UseCors();
 app.UseHttpsRedirection();
 
 // Create new application registrations matching the values configured in Zirku.Client1 and Zirku.Api1.

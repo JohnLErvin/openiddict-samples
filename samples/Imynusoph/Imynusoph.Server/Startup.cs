@@ -20,7 +20,6 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddCors();
         services.AddControllersWithViews();
 
         services.AddDbContext<ApplicationDbContext>(options =>
