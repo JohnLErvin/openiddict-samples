@@ -278,7 +278,7 @@ app.MapMethods("authorize", [HttpMethods.Get, HttpMethods.Post], async (HttpCont
     identity.SetScopes(identifier switch
     {
         1 => request.GetScopes(),
-        2 => new[] { "api1" }.Intersect(request.GetScopes()),
+        2 => new[] { "openid", "api1" }.Intersect(request.GetScopes()),
         _ => throw new InvalidOperationException()
     });
 
